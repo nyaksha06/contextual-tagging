@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagging History</title>
+    <link rel="stylesheet" href="{% static 'css/tag-history.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Context Tagging System</h1>
+        <nav>
+            <ul class="navbar">
+                <li><a href="{% url 'initialize_tags' %}">Home</a></li>
+                <li><a href="{% url 'tag_content' %}">Tag Content</a></li>
+                <li><a href="{% url 'tagged_content_history' %}">Tagging History</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Tagging History</h1>
+        <ul class="card-list">
+            {% for item in tagged_contents %}
+            <li class="card">
+                <div class="card-content">
+                    <strong>Content:</strong> {{ item.content|slice:":50" }}... <br>
+                    <strong>Tag:</strong>
+                    {% with item.tags.all|first as first_tag %}
+                    {{ first_tag.name }}
+                    {% endwith %}
+                </div>
+                <div class="button-group">
+                    <a href="{% url 'tagged_content_detail' item.id %}" class="btn view-btn">View</a>
+                    <form action="{% url 'delete_tagged_content' item.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn delete-btn">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+
+</body>
+
+</html>

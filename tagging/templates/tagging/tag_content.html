@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Content</title>
+    <link rel="stylesheet" href="{% static 'css/tag-content.css' %}">
+
+</head>
+
+<body>
+
+<header>
+    <h1>Context Tagging System</h1>
+    <nav>
+        <ul class="navbar">
+            <li><a href="{% url  'initialize_tags'  %}">Home</a></li>
+            <li><a href="{% url  'tag_content'  %}">Tag Content</a></li>
+            <li><a href="{% url  'tagged_content_history'  %}">Tagging History</a></li>
+        </ul>
+    </nav>
+</header>
+   
+<main class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="content" rows="10" cols="50" placeholder="Enter your content here..."></textarea><br><br>
+        <input type="submit" value="Get Tags">
+    </form>
+</main>
+    
+</body>
+
+</html>

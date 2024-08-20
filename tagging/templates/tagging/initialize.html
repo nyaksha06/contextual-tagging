@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Tagging System</title>
+    <link rel="stylesheet" href="{% static 'css/initialize.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1>Context Tagging System</h1>
+        <nav>
+            <ul class="navbar">
+                <li><a href="{% url  'initialize_tags'  %}">Home</a></li>
+                <li><a href="{% url  'tag_content'  %}">Tag Content</a></li>
+                <li><a href="{% url  'tagged_content_history'  %}">Tagging History</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <p>
+        This platform helps you efficiently tag your content. Simply submit your text, and it will be automatically categorized
+        into relevant topics such as Technology, Health, Sports, Fashion, Politics, and more.
+        </p>
+    </main>
+</body>
+
+</html>

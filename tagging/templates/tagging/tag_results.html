@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Results</title>
+    <link rel="stylesheet" href="{% static 'css/tag-results.css' %}">
+</head>
+
+
+<body>
+
+
+    <header>
+        <h1>Context Tagging System</h1>
+        <nav>
+            <ul class="navbar">
+                <li><a href="{% url  'initialize_tags'  %}">Home</a></li>
+                <li><a href="{% url  'tag_content'  %}">Tag Content</a></li>
+                <li><a href="{% url  'tagged_content_history'  %}">Tagging History</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main class="container">
+        <h1>Content:</h1>
+        <p>{{ content }}</p>
+        
+        <h2>Suggested Tag:</h2>
+        <ul>
+            {% if tags %}
+            <ul>
+                <li>{{ tags.0 }}</li>
+            </ul>
+            {% else %}
+            <p>No tags available.</p>
+            {% endif %}
+        
+        </ul>
+        
+        <a href="{% url 'tag_content' %}">Tag Another Content</a>
+
+    </main>
+    
+</body>
+
+</html>
+
+
